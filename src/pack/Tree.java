@@ -1,7 +1,7 @@
 package pack;
 
 public class Tree<E> {
-  Node<E> root;
+  private Node<E> root;
 
   public Node<E> getRoot() {
     return root;

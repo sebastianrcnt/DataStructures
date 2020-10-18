@@ -1,7 +1,7 @@
 package pack;
 
 public class Node<E> {
-    protected E value; // can only be accessed to child classes.
+    private E value; // can only be accessed to child classes.
 
     public Node() {
 

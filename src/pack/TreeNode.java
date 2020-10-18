@@ -1,8 +1,8 @@
 package pack;
 
 public class TreeNode<E> extends Node<E> {
-  protected Node<E> left;
-  protected Node<E> right;
+  private Node<E> left;
+  private Node<E> right;
 
   public TreeNode() {
     super();
