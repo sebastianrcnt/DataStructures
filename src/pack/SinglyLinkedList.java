@@ -46,8 +46,23 @@ public class SinglyLinkedList<E> implements List<E> {
     size++;
   }
 
-  public void insert(E value, int at) {
+  public void insertFront(E value) {
+    if (isEmpty()) {
+      append(value);
+    } else {
+      ListNode<E> node = new ListNode<E>(value);
+      node.setNext(head);
+      head = node;
+    }
+    size++;
+  }
 
+  public void insertAfter(E value, int at) {
+    ListNode<E> node = getNode(at);
+    ListNode<E> next = node.getNext();
+    ListNode<E> nodeToinsertAfter = new ListNode<E>(value);
+    node.setNext(nodeToinsertAfter);
+    nodeToinsertAfter.setNext(next);
     size++;
   }
 
@@ -77,5 +92,37 @@ public class SinglyLinkedList<E> implements List<E> {
 
   public boolean isEmpty() {
     return head == null;
+  }
+
+  public static <F> void is(F i1, F i2) {
+    if (i1 == i2) {
+      System.out.printf("[PASS] %s == %s\n", i1.toString(), i2.toString());
+    } else {
+      System.out.printf("[FAIL] %s != %s\n", i1.toString(), i2.toString());
+    }
+
+  }
+  public static void main(String[] args) {
+    SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+    sll.append(0);
+    sll.append(1);
+    sll.append(2);
+    sll.append(3);
+    sll.append(4);
+
+    is(sll.get(2), 2);
+    is(sll.get(3), 3);
+    is(sll.size(), 5);
+    is(sll.getNode(2).getValue(), 2);
+    sll.set(10, 2);
+    is(sll.get(2), 10);
+    sll.insertAfter(99, 2);
+    is(sll.get(2), 10);
+    is(sll.get(3), 99);
+
+    sll.insertFront(5);
+    is(sll.get(1), 0);
+    is(sll.get(0), 5);
+    is(sll.size(), 7);
   }
 }
