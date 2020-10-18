@@ -6,30 +6,30 @@ public class ArrayList<E> {
   private E[] array;
   private int size;
 
-  public ArrayList() {
+  public ArrayList() { // O(1)
     size = 0;
     array = (E[]) new Object[1];
   }
 
-  public int size() {
+  public int size() { // O(1)
     return this.size;
   }
 
-  public E get(int at) {
+  public E get(int at) { // O(1)
     if (size == 0) {
       throw new NoSuchElementException();
     }
     return array[at];
   }
 
-  public void append(E item) {
+  public void append(E item) { // O(n)
     if (size == array.length) {
       resize(2 * array.length);
     }
     array[size++] = item;
   }
 
-  public void insert(E newItem, int at) {
+  public void insert(E newItem, int at) { // O(n) or O(1)
     if (size == array.length) {
       resize(2 * array.length);
     }
@@ -42,7 +42,7 @@ public class ArrayList<E> {
     size++;
   }
 
-  public E delete(int at) {
+  public E delete(int at) { // O(n)
     if (isEmpty()) {
       throw new NoSuchElementException();
     }
@@ -66,7 +66,7 @@ public class ArrayList<E> {
     return size == 0;
   }
 
-  private void resize(int newSize) {
+  private void resize(int newSize) { // O(n)
     E[] temp = (E[]) new Object[newSize];
     for (int i = 0; i < size; i++) {
       temp[i] = array[i];
@@ -85,17 +85,5 @@ public class ArrayList<E> {
     sb.append(array[size-1]);
     sb.append(']');
     return sb.toString();
-  }
-
-  public static void main(String[] args) {
-    ArrayList<Integer> arrayList = new ArrayList<Integer>();
-
-    arrayList.append(0);
-    arrayList.append(1);
-    arrayList.append(2);
-    arrayList.append(3);
-    arrayList.delete(2);
-
-    System.out.println(arrayList.toString());
   }
 }
