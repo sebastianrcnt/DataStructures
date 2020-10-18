@@ -17,4 +17,8 @@ public class ListNode<E> extends Node<E> {
   public ListNode<E> getNext() {
     return next;
   }
+
+  public boolean hasNext() {
+    return next != null;
+  }
 }

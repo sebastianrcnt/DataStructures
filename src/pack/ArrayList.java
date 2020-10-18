@@ -2,7 +2,7 @@ package pack;
 
 import java.util.NoSuchElementException;
 
-public class ArrayList<E> {
+public class ArrayList<E> implements List<E> {
   private E[] array;
   private int size;
 
@@ -22,14 +22,18 @@ public class ArrayList<E> {
     return array[at];
   }
 
-  public void append(E item) { // O(n)
+  public void set(E value, int at) {
+    array[at] = value;
+  }
+
+  public void append(E value) { // O(n)
     if (size == array.length) {
       resize(2 * array.length);
     }
-    array[size++] = item;
+    array[size++] = value;
   }
 
-  public void insert(E newItem, int at) { // O(n) or O(1)
+  public void insert(E newValue, int at) { // O(n) or O(1)
     if (size == array.length) {
       resize(2 * array.length);
     }
@@ -38,7 +42,7 @@ public class ArrayList<E> {
       array[i + 1] = array[i];
     }
 
-    array[at] = newItem;
+    array[at] = newValue;
     size++;
   }
 
@@ -47,19 +51,19 @@ public class ArrayList<E> {
       throw new NoSuchElementException();
     }
 
-    E item = array[at];
+    E value = array[at];
     for (int i = at; i < size - 1; i++) {
       array[i] = array[i + 1];
     }
 
-    array[size-1] = null;
+    array[size - 1] = null;
 
     size--;
 
     if (size > 0 && size == array.length / 4) {
       resize(array.length / 2);
     }
-    return item;
+    return value;
   }
 
   public boolean isEmpty() {
@@ -82,7 +86,7 @@ public class ArrayList<E> {
       sb.append(array[i].toString());
       sb.append(' ');
     }
-    sb.append(array[size-1]);
+    sb.append(array[size - 1]);
     sb.append(']');
     return sb.toString();
   }
